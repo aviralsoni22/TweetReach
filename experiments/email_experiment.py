@@ -1,4 +1,5 @@
 import smtplib
+import os
 from dotenv import load_dotenv
 load_dotenv()
 email = input("SENDER EMAIL: ")
@@ -8,6 +9,6 @@ message = input("MESSAGE: ")
 text = f"Subject: {subject}\n\n{message}"
 server = smtplib.SMTP("smtp.gmail.com", 587)
 server.starttls()
-server.login(email, "fiiyqxvwrfqlmzsu")
+server.login(email, os.getenv("APP_PASSWORD"))
 server.sendmail(email, rec_email, text)
 print("Email has been sent to: " + rec_email)
